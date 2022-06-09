@@ -1,4 +1,4 @@
-pynb_checkpoints
+*.ipynb_checkpoints
 *.DS_Store
 *.idea
 *.pyc
@@ -7,6 +7,10 @@ pynb_checkpoints
 *.ipynb
 
 ## Core latex/pdflatex auxiliary files:
+/data/output/*
+/data/temp/*
+/data/demo/*
+/data/input/*
 *.tex
 *.aux
 *.lof
@@ -15,4 +19,3 @@ pynb_checkpoints
 *.fls
 *.out
 *.toc
-~      

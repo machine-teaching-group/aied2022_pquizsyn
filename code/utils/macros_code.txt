@@ -1,0 +1,118 @@
+% !TEX root =  code.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[convert]{standalone}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% New Macros introduced for this structural concept space
+\usepackage{environ}
+\usepackage{optidef}
+\usepackage{booktabs}
+\usepackage{hhline}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{mdframed}
+\NewEnviron{boxcode}[3]{
+	\begin{center}
+		\scalebox{#2}{
+			\setlength\tabcolsep{4pt}
+			\renewcommand{\arraystretch}{#3}
+			\begin{tabular}{|p{#1}|}    
+				\hline
+				\vspace{0.1mm}    
+				%%%
+				\BODY
+				%%%
+				\\\hline
+			\end{tabular}
+		}
+	\end{center}
+}
+
+
+\newcommand{\textcode}[1]{{\fontfamily{cmtt}\selectfont #1}\xspace}
+
+\newcommand{\task}{\ensuremath{T}}
+\newcommand{\code}{\ensuremath{C}}
+%\newcommand{\codesketch}{\text{\textcode{C_\text{struct}}}}
+
+
+\newcommand{\DSLMove}{\textcode{move}}
+\newcommand{\DSLTurnL}{\textcode{turnL}}
+\newcommand{\DSLTurnLeft}{\textcode{turnLeft}}
+\newcommand{\DSLTurnR}{\textcode{turnR}}
+\newcommand{\DSLTurnRight}{\textcode{turnRight}}
+\newcommand{\DSLPickM}{\textcode{pickM}}
+\newcommand{\DSLPickMarker}{\textcode{pickMarker}}
+\newcommand{\DSLPutM}{\textcode{putM}}
+\newcommand{\DSLPutMarker}{\textcode{putMarker}}
+\newcommand{\DSLRepeat}{\textcode{\textsc{Repeat}}}
+\newcommand{\DSLRepeatUntil}{\textcode{\textsc{RepeatUntil}}}
+\newcommand{\DSLIf}{\textcode{\textsc{If}}}
+\newcommand{\DSLIfElse}{\textcode{\textsc{IfElse}}}
+\newcommand{\DSLElse}{\textcode{\textsc{Else}}}
+\newcommand{\DSLdo}{\textcode{\textsc{do}}}
+\newcommand{\DSLWhile}{\textcode{\textsc{While}}}
+\newcommand{\DSLRun}{\textcode{\textsc{Run}}}
+\newcommand{\DSLBoolGoal}{\textcode{goal}}
+\newcommand{\DSLBoolPathAhead}{\textcode{pathAhead}}
+\newcommand{\DSLBoolPathA}{\textcode{pathA}}
+\newcommand{\DSLBoolNoPathAhead}{\textcode{no pathAhead}}
+\newcommand{\DSLBoolNoPathA}{\textcode{noPathA}}
+
+\newcommand{\DSLBoolPathLeft}{\textcode{pathLeft}}
+\newcommand{\DSLBoolPathL}{\textcode{pathL}}
+\newcommand{\DSLBoolNoPathLeft}{\textcode{no pathLeft}}
+\newcommand{\DSLBoolNoPathL}{\textcode{noPathL}}
+\newcommand{\DSLBoolPathRight}{\textcode{pathRight}}
+\newcommand{\DSLBoolPathR}{\textcode{pathR}}
+\newcommand{\DSLBoolNoPathRight}{\textcode{no pathRight}}
+\newcommand{\DSLBoolNoPathR}{\textcode{noPathR}}
+\newcommand{\DSLBoolMarkerPresent}{\textcode{markerPresent}}
+\newcommand{\DSLBoolMarker}{\textcode{marker}}
+\newcommand{\DSLBoolNoMarkerPresent}{\textcode{no markerPresent}}
+\newcommand{\DSLBoolNoMarker}{\textcode{noMarker}}
+
+\newcommand{\DSLBoolTrue}{\textcode{True}}
+\newcommand{\DSLBoolFalse}{\textcode{False}}
+
+
+
+\newcommand{\DSLCode}{\textnormal{code }}
+\newcommand{\DSLStmt}{\textnormal{stmt }}
+\newcommand{\DSLStmtVar}{\textcode{s}}
+\newcommand{\DSLAction}{\textnormal{action }}
+\newcommand{\DSLActionVar}{\textcode{a}}
+\newcommand{\DSLBool}{\textnormal{bool }}
+\newcommand{\DSLBoolVar}{\textcode{b}}
+\newcommand{\DSLIter}{\textnormal{iter }}
+\newcommand{\DSLIterVar}{\textcode{x}}
+\newcommand{\DSLRule}{\textnormal{rule }}
+\newcommand{\DSLRuleVar}{\textcode{y}}
+\newcommand{\DSLRepeatForever}{\textcode{g}}
+
+\newcommand{\SDSLSketch}{\textnormal{sketch }}
+\newcommand{\SDSLSketchVar}{\ensuremath{S}}
+\newcommand{\SDSLSStmt}{\textnormal{sstmt }}
+\newcommand{\SDSLSStmtVar}{\textcode{S}}
+\newcommand{\SDSLStruct}{\textnormal{struct }}
+\newcommand{\SDSLVarY}{\textcode{Y}}
+\newcommand{\SDSLVarG}{\textcode{G}}
+\newcommand{\SDSLBlock}{\textnormal{block }}
+%\newcommand{\SDSLBlockVar}{\ensuremath{\text{\textcode{A}}^\textnormal{list}}}
+
+%\newcommand{\SDSLBlockVar}{\ensuremath{\vv{\text{\textcode{A}}}}}
+%\newcommand{\SDSLBlockVar}{\ensuremath{\overline{\text{\textcode{A}}}}}
+\newcommand{\SDSLBlockVar}{\ensuremath{\Lambda}}
+
+\newcommand{\SDSLBool}{\textcode{B}}
+\newcommand{\SDSLIter}{\textcode{X}}
+\newcommand{\SDSLAction}{\textcode{A}}
+\newcommand{\SDSLBoolCond}{\textcode{boolCond}}
+\newcommand{\textoverline}[1]{$\overline{\mbox{#1}}$}
+\newcommand{\actionseq}{\textoverline{\textcode{A}}}
+\def\smallhyphen{{\hbox{-}}}
+\newcommand{\actionseqb}{\textcolor{blue}{\textoverline{\textcode{A}}}}
+
+
+
+\newcommand{\codeblock}{\textcode{Block}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
