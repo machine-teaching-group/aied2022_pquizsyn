@@ -2,11 +2,11 @@ import json
 import copy
 import collections
 import os
-from step4_intervention.config import DATA_TEMP
-from step3_code2task.stanford_based.full_code.code.utils.parser import convert_json_to_python
-from utils.ast import ASTNode, valid_ASTNode, get_hash_code_of_ast
-from step3_code2task.stanford_based.full_code.code.utils.run_testcases import solves_karel_task
-from step3_code2task.stanford_based.full_code.code.run_random import run_random_with_quality_only
+from code.step4_intervention.config import DATA_TEMP
+from code.step3_code2task.utils.parser import convert_json_to_python
+from code.utils.ast import ASTNode, valid_ASTNode, get_hash_code_of_ast
+from code.step3_code2task.utils.run_testcases import solves_karel_task
+from code.step3_code2task.run_random import run_random_with_quality_only
 
 
 def run_delta_set_on_task(type:str, code:ASTNode, start_karel_world, end_karel_world, temp_folder=DATA_TEMP):
