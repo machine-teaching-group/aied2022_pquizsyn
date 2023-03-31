@@ -1,3 +1,13 @@
+boto==2.49.0
+networkx==2.6.3
+numpy==1.21.6
+pandas==1.3.5
+python-dateutil==2.8.2
+pytz==2023.2
+scipy==1.7.3
+six==1.16.0
+stanfordkarel==0.2.4
+tqdm==4.65.0
 z3==0.2.0
 z3-solver==4.8.11.0
 zss==1.2.0
