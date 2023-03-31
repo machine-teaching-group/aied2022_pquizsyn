@@ -5,7 +5,7 @@ from code.utils.sketch import json_to_sketch as json_to_sketch
 from code.utils.sketch import sketch_to_json as sketch_to_json
 from code.step1_hintpolicy.hintpolicy_struct_hop import get_sketch_one_hop as get_sketch_one_hop
 from code.step1_hintpolicy.hintpolicy_struct_multihop import get_sketch_multihop_2 as get_sketch_multihop_2
-from code.step1_hintpolicy.hintpolicy_struct_gcs import get_sketch_gcs as get_sketch_gcs
+# from code.step1_hintpolicy.hintpolicy_struct_gcs import get_sketch_gcs as get_sketch_gcs
 from code.step1_hintpolicy.hintpolicy_struct_same import get_sketch_same as get_sketch_same
 
 
@@ -20,7 +20,7 @@ alg_func_dict = {
     'reduced-code': 'get_sketch_multihop_2'
 }
 
-def gen_struct_images(structfile, outputfolder, inputfolder = '../../data/temp/'):
+def gen_struct_images(structfile, outputfolder, inputfolder = './data/input/temp_latex/'):
 
     struct_script = get_full_latex_script(structfile)
     with open(inputfolder + 'code_struct.tex', 'w') as fp:
@@ -28,9 +28,9 @@ def gen_struct_images(structfile, outputfolder, inputfolder = '../../data/temp/'
 
     # generate the image file
     input_path = inputfolder + 'code_struct.tex'
-    os.system("pdflatex -interaction=nonstopmode -output-directory ../../data/temp %s" % (input_path))
+    os.system("pdflatex -interaction=nonstopmode -output-directory ./data/input/temp_latex %s" % (input_path))
     output_path = outputfolder + 'code_struct.jpg'
-    os.system("convert -density 600 -quality 100 ../../data/temp/code_struct.pdf %s" % output_path)
+    os.system("convert -density 600 -quality 100 ./data/input/temp_latex/code_struct.pdf %s" % output_path)
 
     print("Generated sketch hint image")
     return
@@ -52,6 +52,7 @@ def get_sketch_hint(task_id, student_id, alg_id, inputfolder, outputfolder, save
         type = 'hoc'
 
     outputpath = outputfolder + 'task-' + task_id + '/student-' + student_id + '/alg-' + alg_id + '/'
+    os.makedirs(outputpath, exist_ok=True)
     sketch_hint = eval(alg_func_dict[alg_id])(stusketch, solsketch, type)
     sketch_hint_json = sketch_to_json(sketch_hint)
 

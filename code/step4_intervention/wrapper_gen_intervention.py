@@ -20,10 +20,10 @@ This function ties all 3 parts together, and takes as input the task_id,  studen
 
 
 
-def full_run(task_ids:list, substructure_ids:list, bucket_sample_size = 3, sampling_size=50, verbose=False):
+def full_run(tid:tuple, substructure_ids:list, bucket_sample_size = 3, sampling_size=50, verbose=False):
 
     display_dict = {}
-    for tid in task_ids:
+    if True: # for tid in task_ids: Doing this to avoid massive code patches
         type = tid[1]
         sol_code_symast, sol_code_size = eval(config.INPUT_CODE_DICT[str(tid[0])])()
 
@@ -110,23 +110,23 @@ if __name__ == "__main__":
 
     # # run full_run
     task_ids_dict = {
-                "0": [0, 'hoc'],
-                "1": [1, 'hoc'],
-                "2": [2, 'hoc'],
-                "3": [3, 'hoc'],
-                "4": [4, 'karel'],
-                "5": [5, 'karel'],
-                "6": [6, 'karel'] # newly added Karel Task
+                "0": (0, 'hoc'),
+                "1": (1, 'hoc'),
+                "2": (2, 'hoc'),
+                "3": (3, 'hoc'),
+                "4": (4, 'karel'),
+                "5": (5, 'karel'),
+                "6": (6, 'karel') # newly added Karel Task
     }
 
-    task_ids = [task_ids_dict["0"], task_ids_dict["1"], task_ids_dict["2"], task_ids_dict["3"], task_ids_dict["4"], task_ids_dict["5"], task_ids_dict["6"]]
+    # task_ids = [task_ids_dict["0"], task_ids_dict["1"], task_ids_dict["2"], task_ids_dict["3"], task_ids_dict["4"], task_ids_dict["5"], task_ids_dict["6"]]
     substructure_ids_dict = {
                    "0": [0,1,2],
                    "1": [0,1,2],
                    "2": [0,1,2],
-                   "3": [0,1,2], # substructure ID 3 treated separately for additional code constraints.
+                   "3": [0,1,2,3], # substructure ID 3 treated separately for additional code constraints.
                    "4": [0,1,2],
-                   "5": [0,1], # substructure ID 2 treated separately for additional code constraints. Also runtime is higher than all others
+                   "5": [0,1,2], # substructure ID 2 treated separately for additional code constraints. Also runtime is higher than all others
                    "6": [0,1] # newly added Karel Task
 
                 }
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         bucket_code_samples = 3
         sample_size = 2000
         #### generate all the task-code pairs
-        total_codes, display_dict = full_run(task_ids, sub_ids, bucket_sample_size=bucket_code_samples, sampling_size=sample_size, verbose=False)
+        total_codes, display_dict = full_run(task_ids_dict[key], sub_ids, bucket_sample_size=bucket_code_samples, sampling_size=sample_size, verbose=False)
         if total_codes is None:
             print("Unable to create all task-code pairs!")
             exit(0)

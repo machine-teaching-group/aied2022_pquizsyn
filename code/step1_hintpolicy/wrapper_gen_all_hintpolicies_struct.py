@@ -5,8 +5,8 @@ from code.step1_hintpolicy.wrapper_hintpolicies import get_sketch_hint as get_sk
 
 
 if __name__ == "__main__":
-    inputfolder = "../../data/input/"
-    outputfolder = "../../data/output/expert-survey-input-data/"
+    inputfolder = "./data/input/"
+    outputfolder = "./data/output/expert-survey-input-data/"
 
     task_ids = ['0', '3', '4', '5']
     student_ids = ['0', '1', '2', '3']
